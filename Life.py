@@ -1,5 +1,5 @@
 from random import randint
-
+import time
 def dead_state(width, height):
 	board = []
 
@@ -101,22 +101,26 @@ def next_board_state(state):
 	return new_state
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-state = random_state(20, 30)
+state = random_state(50, 20)
 render(state)
-new_state = next_board_state(state)
-render(new_state)
+
+while(True):
+	state = next_board_state(state)
+	render(state)
+	time.sleep(0.25)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	
