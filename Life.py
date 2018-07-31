@@ -1,5 +1,8 @@
 from random import randint
 import time
+import numpy
+
+
 def dead_state(width, height):
 	board = []
 
@@ -76,7 +79,7 @@ def next_board_state(state):
 					live_count = live_count + state[row][column-1] + state[row-1][column-1] + state[row-1][column] + state[row][column+1] + state[row][column+1]
 			#If cell is on left side
 			elif(column == 0):
-				live_count = live_count + state[row-1][column] + state[row][column+1] + state[row][column+1] + state[row+1][column+1] + state[row+1][column]
+				live_count = live_count + state[row-1][column] + state[row][column+1] + state[row-1][column+1] + state[row+1][column+1] + state[row+1][column]
 			#Cell is on right side
 			elif(column == (len(state[row]) - 1)):
 				live_count = live_count + state[row-1][column] + state[row-1][column-1] + state[row][column-1] + state[row+1][column-1] + state[row+1][column]
@@ -100,8 +103,25 @@ def next_board_state(state):
 
 	return new_state
 
+def load_board_state(file):
+	theFile = open(file, 'r')
+	state = []
+	row = []
 
-state = random_state(50, 20)
+	for cell in theFile.read():
+		if cell == '\n':
+			state.append(row)
+			row = []
+			continue
+		row.append(int(cell))
+
+	state.append(row)
+
+	return state
+
+
+
+state = random_state(50, 30)
 render(state)
 
 while(True):
