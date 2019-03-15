@@ -4,6 +4,9 @@
 
 Program allows you to play with an intitially random state, or import one from a file.
 
+The code currently creates an intitially random state, but there is a "load state function" that can be used to
+replace "state" and the main game loop.
+
 Imports from a file should be in the format of 
 
 000000  
